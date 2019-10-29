@@ -1,0 +1,37 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    background-color: #FFF;
+    background-size: cover;
+}
+.spacing{
+    height: 3em;
+}
+.jumbotron{
+    background-color: #7EBDC2;
+    color: white;
+}
+.icon-bar {
+  width: 100%; /* Full-width */
+  background-color: #343A40; /* Dark-grey background */
+  overflow: auto; /* Overflow due to float */
+}
+.icon-bar a {
+  float: left; /* Float links side by side */
+  text-align: center; /* Center-align text */
+  width: 20%; /* Equal width (5 icons with 20% width each = 100%) */
+  padding: 12px 0; /* Some top and bottom padding */
+  transition: all 0.3s ease; /* Add transition for hover effects */
+  color: white; /* White text color */
+  font-size: 36px; /* Increased font size */
+}
+.icon-bar a:hover {
+  background-color: #333; /* Add a hover color */
+}
+
+.icon-active {
+  background-color: #7EBDC2; /* Add an active/current color */
+}
+.speciality-btn{
+    height: 3em;
+    margin-bottom: 1em;
+}

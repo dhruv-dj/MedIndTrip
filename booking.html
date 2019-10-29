@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>
+    <title>Appointment Booking | MedIndTrip</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Appointment Booking by MedIndTrip">
+    <meta name="keywords" content="">
+    <meta name="author" content="MedIndTrip">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">MEDINDTRIP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+            <a class="nav-link" href="#">Book An Appointment</a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+    <div class="spacing"></div>
+    <div class="container h-100">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="icon-bar">
+                  <a class="icon-active step1" href="#"><i class="fa fa-phone"></i></a>
+                  <a class="step2" href="#"><i class="fa fa-star"></i></a>
+                  <a class="step3" href="#"><i class="fa fa-hospital"></i></a>
+                  <a class="step4" href="#"><i class="fa fa-user-md"></i></a>
+                  <a class="step5" href="#"><i class="fa fa-check"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="spacing"></div>
+        <!-- Step 1 | Contact Info -->
+     <div id = "step1" class="row">
+        <div class="col-3"></div>
+        <div class="card col">
+        <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+
+          </div>
+          <div class="form-group">
+            <label for="contact">Mobile Number</label>
+            <input type="tel" class="form-control" id="contact" placeholder="Enter Number">
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">I agree to the Terms &amp; Conditions</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Next</button>
+        </form>
+        </div>
+        </div>
+        <div class="col-3"></div>
+        </div> 
+        <!-- Step 2 | Choose Specialization -->
+     
+    <div id = "step2" class="row">
+
+        <div class="card col">
+        <div class="card-header text-center">
+            <h5>Choose Specialization</h5>
+        </div>    
+        <div class="card-body">
+            <div class="row">
+                <div class="col-4">
+                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">Cardiology</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">Oncology</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">Pediatrics</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">ENT</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">Gynaecology</button>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">Optics</button>
+                </div>  
+            </div> 
+            <div class="spacing"></div>
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <form>
+                        <div class="form-group">
+                            <select class="form-control" id="specialization">
+                              <option>Select Other Category...</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-4"><button type="submit" class="center btn btn-outline-success">Proceed</button></div>
+            </div>
+        </div>
+        </div>
+        </div> 
+    </div>
+    <div class="spacing"></div>
+    <footer class="text-center">MedIndTrip&copy;2019</footer>
+</body>
+
+<script>
+$(document).ready(function(){
+    $("#step2").hide();
+    $("#step1").show();
+  $(".step2").click(function(){
+  $("#step1").hide("fast");
+  $("#step2").show("fast");  
+  });
+    $(".step1").click(function(){
+  $("#step2").hide("fast");
+  $("#step1").show("fast");  
+  });
+});
+</script>
+
