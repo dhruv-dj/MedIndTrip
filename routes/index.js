@@ -38,15 +38,20 @@ router.use('/',express.static(path.join(__dirname , '../frontend')));
 
 router.post('/add-to-cart/',function(req,res,next){
   console.log(req);
-  var productId = req.params.id;
-  var cart = new Cart(req.session.cart ? req.session.cart : {items : {}, totalQty : 0, totalPrice : 0});
-  product.findById(productId,function(err,item){
-    if(err) throw err;
-    cart.add(item,item.id);
-    req.session.cart = cart;
-    //console.log(req.session.cart);
-    res.redirect('/');
-  })
+  var obj = {};
+  obj.email = req.body.email;
+  obj.phone = req.body.phone;
+  req.session.info = obj;
+  res.redirect('/');
+  // var productId = req.params.id;
+  // var cart = new Cart(req.session.cart ? req.session.cart : {items : {}, totalQty : 0, totalPrice : 0});
+  // product.findById(productId,function(err,item){
+  //   if(err) throw err;
+  //   cart.add(item,item.id);
+  //   req.session.cart = cart;
+  //   //console.log(req.session.cart);
+  //   res.redirect('/');
+  // })
 })
 
 router.get("/shopping-cart",function(req,res,next){
