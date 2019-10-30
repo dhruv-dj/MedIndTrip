@@ -120,7 +120,7 @@
                         </div>
                     
                 </div>
-                <div class="col-4"><button type="submit" class="center btn btn-outline-success">Proceed</button></div>
+                <div class="col-4"><button id="step2next" type="submit" class="center btn btn-outline-success">Proceed</button></div>
             </div>
         </form>
         </div>
@@ -143,6 +143,7 @@ $(document).ready(function(){
   $("a.step1").removeClass("icon-active");
   $("a.step2").addClass("icon-active");
   });
+    
     $("#step1next").click(function(){
   $("#step1").hide("fast");
   $("#step2").show("fast"); 
@@ -157,6 +158,19 @@ $(document).ready(function(){
   $("a.step2").removeClass("icon-active");
   $("a.step1").addClass("icon-active");
   });
+    
+    $('#step2next').click(function(){
+           
+      var specialization = $("#specialization").val();
+          console.log(specialization);
+      $.ajax({
+          url:'/getDoctors',
+          type:'GET',
+          success: function(data){
+              console.log(data);
+          }
+      }) 
+    });
     
 });
 </script>
