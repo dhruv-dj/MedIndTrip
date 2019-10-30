@@ -84,44 +84,45 @@
             <h5>Choose Specialization</h5>
         </div>    
         <div class="card-body">
+            <form>
             <div class="row">
                 <div class="col-4">
-                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">Cardiology</button>
+                    <input name="Cardiology" type="button" class="btn btn-block btn-outline-dark speciality-btn" value="Cardiology" />
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">Oncology</button>
+                    <input name="Oncology" type="button" class="btn btn-block btn-outline-dark speciality-btn" value="Oncology" />
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">Pediatrics</button>
+                    <input name="Pediatrics" type="button" class="btn btn-block btn-outline-dark speciality-btn" value="Pediatrics"/>
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">ENT</button>
+                    <input name="ENT" type="button" class="btn btn-block btn-outline-dark speciality-btn" value="ENT"/>
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">Gynaecology</button>
+                    <input name="Gynaecology" type="button" class="btn btn-block btn-outline-dark speciality-btn" value="Gynaecology"/>
                 </div>
                 <div class="col-4">
-                    <button type="button" class="btn btn-block btn-outline-dark speciality-btn">Optics</button>
+                    <input name="Optics" type="button" class="btn btn-block btn-outline-dark speciality-btn" value="Optics"/>
                 </div>  
             </div> 
             <div class="spacing"></div>
             <div class="row">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <form>
+                    
                         <div class="form-group">
-                            <select class="form-control" id="specialization">
+                            <select name="OtherSpecialization" class="form-control" id="specialization">
                               <option>Select Other Category...</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
+                              <option value="Neurology">Neurology</option>
+                              <option value="Obstetrics">Obstetrics</option>
+                              <option value="Ophthalmology">Ophthalmology</option>
                             </select>
                         </div>
-                    </form>
+                    
                 </div>
                 <div class="col-4"><button type="submit" class="center btn btn-outline-success">Proceed</button></div>
             </div>
+        </form>
         </div>
         </div>
         </div> 
@@ -134,14 +135,24 @@
 $(document).ready(function(){
     $("#step2").hide();
     $("#step1").show();
+    
+    
   $(".step2").click(function(){
   $("#step1").hide("fast");
-  $("#step2").show("fast");  
+  $("#step2").show("fast"); 
+  $("a.step1").removeClass("icon-active");
+  $("a.step2").addClass("icon-active");
   });
+    
+    
     $(".step1").click(function(){
   $("#step2").hide("fast");
-  $("#step1").show("fast");  
+  $("#step1").show("fast");
+  $("a.step2").removeClass("icon-active");
+  $("a.step1").addClass("icon-active");
   });
+    
+    
 });
 </script>
 
