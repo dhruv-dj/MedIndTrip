@@ -25,7 +25,7 @@ var app = express();
 
     
 var index = require('./routes/index');
-var userRoute = require('./routes/user');
+
 
 
 
@@ -46,7 +46,7 @@ app.use(session({secret: 'mysuoersecret' , resave: false, saveUninitialized: fal
 
     
 app.use('/', index);
-app.use('/user',userRoute);
+
 
 
 

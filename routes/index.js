@@ -1,12 +1,31 @@
 var express = require('express');
 var path = require('path');
 var router = express.Router();
-var product = require('../models/product');
-var passport = require('passport');
+var hospital = require('../models/hospital');
+var doctor = require('../models/doctor');
 
 var csrf = require('csurf');
-var Cart = require('../models/cart');
+var Cart = require('../models/hospital');
 
+router.post('/seed',function(req,res){
+  //console.log(req);
+  var newUser=new doctor();
+
+  newUser.Name  = req.body.Name;
+  newUser.Hospital = req.body.Hospital;
+  
+  newUser.PhotoPath= '/frontend/images/architecture-daylight-door-239853.jpg';
+  newUser.Specialization = req.body.Specialization;
+  newUser.Experience = req.body.Experience;
+  newUser.Degree = req.body.Degree;
+  
+
+  newUser.save(function (err) {
+      if(err) throw (err);
+
+      return res.redirect('/');
+  })
+  })
 
 
 router.use('/',express.static(path.join(__dirname , '../frontend')));
@@ -42,7 +61,7 @@ router.post('/add_details',function(req,res,next){
   obj.email = req.body.email;
   obj.phone = req.body.phone;
   req.session.info = obj;
-  console.log(obj);
+  return res.json({hello : "123"});
   //res.redirect('/booking.html#step2');
   // var productId = req.params.id;
   // var cart = new Cart(req.session.cart ? req.session.cart : {items : {}, totalQty : 0, totalPrice : 0});
@@ -55,6 +74,17 @@ router.post('/add_details',function(req,res,next){
   // })
 })
 
+
+router.get('/getDoctors',function(req,res){
+  doctor.find(function(err,doctors){
+    res.json(doctors);
+  })
+})
+router.get('/gethospitals',function(req,res){
+  hospital.find(function(err,hospitals){
+    res.json(hospitals);
+  })
+})
 
 
 router.get("/shopping-cart",function(req,res,next){
