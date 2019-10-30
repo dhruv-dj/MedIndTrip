@@ -80,7 +80,7 @@ router.get('/getDoctors',function(req,res){
     res.json(doctors);
   })
 })
-router.get('/gethospitals',function(req,res){
+router.get('/getHospitals',function(req,res){
   hospital.find(function(err,hospitals){
     res.json(hospitals);
   })
