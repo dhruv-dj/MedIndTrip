@@ -36,13 +36,14 @@ router.use('/',express.static(path.join(__dirname , '../frontend')));
 //   //console.log(items);
 // });
 
-router.post('/add-to-cart/',function(req,res,next){
+router.post('/add_details',function(req,res,next){
   console.log(req);
   var obj = {};
   obj.email = req.body.email;
   obj.phone = req.body.phone;
   req.session.info = obj;
-  res.redirect('/');
+  console.log(obj);
+  //res.redirect('/booking.html#step2');
   // var productId = req.params.id;
   // var cart = new Cart(req.session.cart ? req.session.cart : {items : {}, totalQty : 0, totalPrice : 0});
   // product.findById(productId,function(err,item){
@@ -53,6 +54,8 @@ router.post('/add-to-cart/',function(req,res,next){
   //   res.redirect('/');
   // })
 })
+
+
 
 router.get("/shopping-cart",function(req,res,next){
   if(!req.session.cart){

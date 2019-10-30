@@ -45,8 +45,8 @@ app.use(session({secret: 'mysuoersecret' , resave: false, saveUninitialized: fal
 
 
     
-app.use('/user',userRoute);
 app.use('/', index);
+app.use('/user',userRoute);
 
 
 
