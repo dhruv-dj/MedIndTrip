@@ -69,7 +69,7 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">I agree to the Terms &amp; Conditions</label>
           </div>
-          <button type="submit" class="btn btn-primary">Next</button>
+          <button id="step1next" type="submit" class="btn btn-primary">Next</button>
         </form>
         </div>
         </div>
@@ -143,6 +143,12 @@ $(document).ready(function(){
   $("a.step1").removeClass("icon-active");
   $("a.step2").addClass("icon-active");
   });
+    $("#step1next").click(function(){
+  $("#step1").hide("fast");
+  $("#step2").show("fast"); 
+  $("a.step1").removeClass("icon-active");
+  $("a.step2").addClass("icon-active");
+  });
     
     
     $(".step1").click(function(){
@@ -151,7 +157,6 @@ $(document).ready(function(){
   $("a.step2").removeClass("icon-active");
   $("a.step1").addClass("icon-active");
   });
-    
     
 });
 </script>
