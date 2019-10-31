@@ -55,7 +55,7 @@
         <div class="col-3"></div>
         <div class="card col">
         <div class="card-body">
-        <form action="/add_details" method="post">
+        <form>
           <div class="form-group">
             <label for="email">Email address</label>
             <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -206,31 +206,7 @@ $(document).ready(function(){
 //  $("a.step2").addClass("icon-active");
 //  });
     
-    $("#step3next").click(function(){
-//  $("#step1").hide("fast");
-  $("#step3").hide("fast");
-//  $("#step2").hide("fast");
-  $("#step4").show("fast");
-//  $("a.step1").removeClass("icon-active");
-  $("a.step3").removeClass("icon-active");
-//  $("a.step2").removeClass("icon-active");
-  $("a.step4").addClass("icon-active");
-     
-  });
-    
-      $("#step2next").click(function(){
-  $("#step2").hide("fast");
-  $("#step3").show("fast");
-  $("a.step2").removeClass("icon-active");
-  $("a.step3").addClass("icon-active");
-  });
-    
-    $("#step1next").click(function(){
-  $("#step1").hide("fast");
-  $("#step2").show("fast"); 
-  $("a.step1").removeClass("icon-active");
-  $("a.step2").addClass("icon-active");
-  });
+
     
     
 //    $(".step1").click(function(){
@@ -259,5 +235,30 @@ $(document).ready(function(){
 //    });
     
 });
+        $("#step3next").click(function(){
+//  $("#step1").hide("fast");
+  $("#step3").hide("fast");
+//  $("#step2").hide("fast");
+  $("#step4").show("fast");
+//  $("a.step1").removeClass("icon-active");
+  $("a.step3").removeClass("icon-active");
+//  $("a.step2").removeClass("icon-active");
+  $("a.step4").addClass("icon-active");
+     
+  });
+    
+      $("#step2next").click(function(){
+  $("#step2").hide("fast");
+  $("#step3").show("fast");
+  $("a.step2").removeClass("icon-active");
+  $("a.step3").addClass("icon-active");
+  });
+    
+    $("#step1next").click(function(){
+  $("#step1").hide("fast");
+  $("#step2").show("fast"); 
+  $("a.step1").removeClass("icon-active");
+  $("a.step2").addClass("icon-active");
+  });
 </script>
 
