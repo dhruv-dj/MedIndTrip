@@ -164,8 +164,8 @@
                     <h5 class="card-title">Dr. Drake Ramoray</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <form id ="docName1slot" class="form-inline">
-                    <select name="slot" class="form-control" id="slot">
+                    <form class="form-inline">
+                    <select name="slot" class="form-control" id="docName1slot">
                       <option>Click to select slot...</option>
                       <option value="1000">10:00</option>
                       <option value="1015">10:15</option>
@@ -187,8 +187,8 @@
                     <h5 class="card-title">Dr. Drake Ramoray</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <form id ="docName2slot" class="form-inline">
-                    <select name="slot" class="form-control" id="slot">
+                    <form class="form-inline">
+                    <select name="slot" class="form-control" id="docName2slot">
                       <option>Click to select slot...</option>
                       <option value="1200">12:00</option>
                       <option value="1215">12:15</option>
@@ -240,6 +240,25 @@
 </body>
 
 <script>
+    var docData = 0;
+    $.ajax({
+          url:'/getDoctors',
+          type:'GET',
+          success: function(data){
+              docData = data;
+              console.log(docData);
+          }
+      })
+    var hospData = 0;
+    $.ajax({
+          url:'/getHospitals',
+          type:'GET',
+          success: function(data){
+              hospData = data;
+              console.log(hospData);
+          }
+      })
+
 $(document).ready(function(){
     $("#step2").hide();
     $("#step3").hide();
@@ -248,78 +267,52 @@ $(document).ready(function(){
     $("#step1").show();
     
     
-//  $(".step2").click(function(){
-//  $("#step1").hide("fast");
-//  $("#step3").hide("fast");
-//  $("#step2").show("fast"); 
-//  $("a.step1").removeClass("icon-active");
-//  $("a.step3").removeClass("icon-active");
-//  $("a.step2").addClass("icon-active");
-//  });
-    
-
-    
-    
-//    $(".step1").click(function(){
-//  $("#step2").hide("fast");
-//  $("#step3").hide("fast");
-//  $("#step1").show("fast");
-//  $("a.step2").removeClass("icon-active");
-//  $("a.step1").addClass("icon-active");
-//  });
-    
-//    var doc = 0;
-//    $.ajax({
-//          url:'/getDoctors',
-//          type:'GET',
-//          success: function(data){
-//              doc = data;
-//          }
-//      }) 
-//    
-//    
-//    $('#step2next').click(function(){
-//           
-//      var specialization = $("#specialization").val();
-//          console.log(specialization);
-//        console.log(doc);    
-//    });
-    
 });
-        $("#step3next").click(function(e){
-             e.preventDefault();
-//  $("#step1").hide("fast");
-  $("#step3").hide("fast");
-//  $("#step2").hide("fast");
-  $("#step4").show("fast");
-//  $("a.step1").removeClass("icon-active");
-  $("a.step3").removeClass("icon-active");
-//  $("a.step2").removeClass("icon-active");
-  $("a.step4").addClass("icon-active");
-     
-  });
-    
-      $("#step2next").click(function(e){
-           e.preventDefault();
-  $("#step2").hide("fast");
-  $("#step3").show("fast");
-  $("a.step2").removeClass("icon-active");
-  $("a.step3").addClass("icon-active");
-  });
-    
+    var jsonData = new Object();    
     $("#step1next").click(function(e){
         e.preventDefault();
+        jsonData['mobile'] = $('#contact').val();
+        jsonData['email'] = $('#email').val();
   $("#step1").hide("fast");
   $("#step2").show("fast"); 
   $("a.step1").removeClass("icon-active");
   $("a.step2").addClass("icon-active");
   });
     
+    $("#step2next").click(function(e){
+        e.preventDefault();
+        var specialization = $('#specialization').val();
+        jsonData['specialization'] = specialization;
+        var str="<option>Click to select hospital...</option>";
+        for(var i=0;i<docData.length;i++){
+            if(docData[i].Specialization == specialization){
+                str += "<option value=" + docData[i].Hospital + ">" +docData[i].Hospital +"</option>";
+            }
+        }
+        $("#hospital").append(`${str}`);
+        console.log(jsonData);
+  $("#step2").hide("fast");
+  $("#step3").show("fast");
+  $("a.step2").removeClass("icon-active");
+  $("a.step3").addClass("icon-active");
+  });
+    
+    $("#step3next").click(function(e){
+        e.preventDefault();
+          $("#step3").hide("fast");
+          $("#step4").show("fast");
+          $("a.step3").removeClass("icon-active");
+          $("a.step4").addClass("icon-active");
+
+    });
+
+    
     $(".doc").click(function(e){
        e.preventDefault();
        var docID = this.id;
-//       var slotTime = $('form#'+docID).val();
-        console.log(document.getElementById(docID+'slot'));
+        var slotID = '#'+docID+'slot';
+        var slotVal = $(slotID).val();
+        console.log(slotVal);
         $("#step4").hide("fast");
   $("#step5").show("fast"); 
   $("a.step4").removeClass("icon-active");
