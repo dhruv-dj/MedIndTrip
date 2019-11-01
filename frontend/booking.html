@@ -157,14 +157,22 @@
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="images/architecture-daylight-door-239853.jpg" class="card-img" alt="...">
+                  <img src="images/docimage.jpg" class="card-img" alt="...">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">Dr. Drake Ramoray</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <input id="docName1" type="button" class="btn btn-outline-dark doc" value="Book"/> 
+                    <form id ="docName1slot" class="form-inline">
+                    <select name="slot" class="form-control" id="slot">
+                      <option>Click to select slot...</option>
+                      <option value="1000">10:00</option>
+                      <option value="1015">10:15</option>
+                      <option value="1030">10:30</option>
+                    </select> &nbsp;   
+                    <input id="docName1" type="button" class="btn btn-outline-dark doc" value="Book"/>
+                    </form>    
                   </div>
                 </div>
               </div>
@@ -172,14 +180,22 @@
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="images/architecture-daylight-door-239853.jpg" class="card-img" alt="...">
+                  <img src="images/docimage.jpg" class="card-img" alt="...">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">Dr. Drake Ramoray</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    <input id="docName2" type="button" class="btn btn-outline-dark doc" value="Book"/>  
+                    <form id ="docName2slot" class="form-inline">
+                    <select name="slot" class="form-control" id="slot">
+                      <option>Click to select slot...</option>
+                      <option value="1200">12:00</option>
+                      <option value="1215">12:15</option>
+                      <option value="1230">12:30</option>
+                    </select> &nbsp;   
+                    <input id="docName2" type="button" class="btn btn-outline-dark doc" value="Book"/>
+                    </form>    
                   </div>
                 </div>
               </div>
@@ -228,8 +244,8 @@ $(document).ready(function(){
     $("#step2").hide();
     $("#step3").hide();
     $("#step5").hide();
-    $("#step1").hide();
-    $("#step4").show();
+    $("#step4").hide();
+    $("#step1").show();
     
     
 //  $(".step2").click(function(){
@@ -301,7 +317,13 @@ $(document).ready(function(){
     
     $(".doc").click(function(e){
        e.preventDefault();
-       var elem = this.id;
+       var docID = this.id;
+//       var slotTime = $('form#'+docID).val();
+        console.log(document.getElementById(docID+'slot'));
+        $("#step4").hide("fast");
+  $("#step5").show("fast"); 
+  $("a.step4").removeClass("icon-active");
+  $("a.step5").addClass("icon-active");
     });
 </script>
 
