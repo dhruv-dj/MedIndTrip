@@ -76,9 +76,31 @@ router.post('/add_details',function(req,res,next){
 
 
 router.get('/getDoctors',function(req,res){
-  doctor.find(function(err,doctors){
-    res.json(doctors);
+  hospital.find(function(err,hospitals){
+    console.log(hospitals);
+    var arr = [];
+    for(var i=0;i<hospitals.length;i++){
+      var obj = {};
+      obj.id = hospitals[i].id;
+      obj.name = hospitals[i].Name;
+      arr.push(obj);
+    }
+    console.log(arr);
+    doctor.find(function(err,doctors){
+      console.log(doctors);
+      var finalarr =[];
+      for(var i=0;i<doctors.length;i++){
+        for(var j=0;j<arr.length;j++){
+          if(doctors[i]._doc.Hospital == arr[j].name){
+            doctors[i]._doc.Hospital = arr[j];
+            break;
+          }
+        }
+      }
+      res.json(doctors)
+    })
   })
+  
 })
 router.get('/getHospitals',function(req,res){
   hospital.find(function(err,hospitals){
