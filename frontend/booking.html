@@ -112,7 +112,7 @@
                         <div class="form-group">
                             <select name="OtherSpecialization" class="form-control" id="specialization">
                               <option>Select Other Category...</option>
-                              <option value="Neurology">Neurology</option>
+                              <option value="Cardiology">Cardiology</option>
                               <option value="Obstetrics">Obstetrics</option>
                               <option value="Ophthalmology">Ophthalmology</option>
                             </select>
@@ -153,7 +153,7 @@
     </div> 
         <!-- Step 4 | Choose Doctor -->
     <div id = "step4" class="row">
-        <div class="card-deck">
+        <div id = "doctor-list" class="card-deck">
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
@@ -286,11 +286,10 @@ $(document).ready(function(){
         var str="<option>Click to select hospital...</option>";
         for(var i=0;i<docData.length;i++){
             if(docData[i].Specialization == specialization){
-                str += "<option value=" + docData[i].Hospital + ">" +docData[i].Hospital +"</option>";
+                str += "<option value=" + docData[i].Hospital.id + ">" +docData[i].Hospital.name +"</option>";
             }
         }
         $("#hospital").append(`${str}`);
-        console.log(jsonData);
   $("#step2").hide("fast");
   $("#step3").show("fast");
   $("a.step2").removeClass("icon-active");
@@ -299,6 +298,38 @@ $(document).ready(function(){
     
     $("#step3next").click(function(e){
         e.preventDefault();
+        var hospitalID = $("#hospital").val();
+        jsonData['hospital'] = hospitalID;
+        var str = "";
+        for(var i=0;i<docData.length;i++){
+            if(docData[i].Specialization == jsonData.specialization&&docData[i].Hospital.id==hospitalID){
+                str += `<div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="${docData[i].PhotoPath}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">${docData[i].Name}</h5>
+                    <p class="card-text">${docData[i].Degree} | ${docData[i].Experience}</p>
+                    <p class="card-text"><small class="text-muted">${docData[i].Specialization}</small></p>
+                    <form class="form-inline">
+                    <select name="slot" class="form-control" id="${docData[i].id}+slot">
+                      <option>Click to select slot...</option>
+                      <option value="1000">10:00</option>
+                      <option value="1015">10:15</option>
+                      <option value="1030">10:30</option>
+                    </select> &nbsp;   
+                    <input id="${docData[i].id}" type="button" class="btn btn-outline-dark doc" value="Book"/>
+                    </form>    
+                  </div>
+                </div>
+              </div>
+            </div>`;
+            }
+        }
+        $("#doctor-list").append(`${str}`);
+        console.log(jsonData);
           $("#step3").hide("fast");
           $("#step4").show("fast");
           $("a.step3").removeClass("icon-active");
