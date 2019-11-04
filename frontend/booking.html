@@ -133,7 +133,7 @@
         <form>
           <div class="form-group">
             <label for="date">Select Appointment Date</label>
-            <input class="form-control" type="date" name="Date" >
+            <input id="appointmentDate" class="form-control" type="date" name="Date" >
           </div>
           <div class="form-group">
             <label for="date">Choose Hospital</label>
@@ -300,8 +300,9 @@ $(document).ready(function(){
         e.preventDefault();
         var hospitalID = $("#hospital").val();
         jsonData['hospital'] = hospitalID;
-        var str = "";
+        jsonData['date'] = $("#appointmentDate").val()
         for(var i=0;i<docData.length;i++){
+            var str = "";
             if(docData[i].Specialization == jsonData.specialization&&docData[i].Hospital.id==hospitalID){
                 str += `<div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
@@ -326,9 +327,12 @@ $(document).ready(function(){
                 </div>
               </div>
             </div>`;
+            $("#doctor-list").append(`${str}`);
+//            var slotStr = "";
+//            for(var j=0;j<docData[i].)
             }
         }
-        $("#doctor-list").append(`${str}`);
+        
         console.log(jsonData);
           $("#step3").hide("fast");
           $("#step4").show("fast");
@@ -343,11 +347,33 @@ $(document).ready(function(){
        var docID = this.id;
         var slotID = '#'+docID+'slot';
         var slotVal = $(slotID).val();
-        console.log(slotVal);
+//        console.log(slotVal);
+        jsonData['doctor'] = docID;
+        jsonData['slot'] = slotVal;
         $("#step4").hide("fast");
   $("#step5").show("fast"); 
   $("a.step4").removeClass("icon-active");
   $("a.step5").addClass("icon-active");
+    });
+    
+    $("#book").click(function(e){
+        e.preventDefault();
+        jsonData['name'] = $("#fname").val() + $("#lname").val();
+        jsonData['age'] = $("#age").val();
+        jsonData['gender'] = $("#gender").val()
+        console.log(jsonData);
+        
+        $.ajax({
+            url: '/confirmBooking',
+            type: 'POST',
+            data: JSON.stringify(jsonData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            async: false,
+            success: function(msg) {
+                alert(msg);
+            }
+        });
     });
 </script>
 
