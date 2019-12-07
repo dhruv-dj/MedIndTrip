@@ -3,9 +3,12 @@ var path = require('path');
 var router = express.Router();
 var hospital = require('../models/hospital');
 var doctor = require('../models/doctor');
-
+var booking = require('../models/booking');
 var csrf = require('csurf');
+var pdf = require("pdf-creator-node");
+var fs = require('fs');
 var Cart = require('../models/hospital');
+var html = fs.readFileSync('template.html', 'utf8');
 
 router.post('/seed',function(req,res){
   //console.log(req);
@@ -108,6 +111,66 @@ router.get('/getHospitals',function(req,res){
   })
 })
 
+
+router.post("/confirmBooking", function(req,res){
+  console.log(req);
+  //console.log(req);
+  var newUser=new booking();
+
+  newUser.Name  = req.body.name;
+  newUser.Hospital = req.body.hospital;
+  newUser.Age = req.body.age;
+  newUser.Date = req.body.date;
+  newUser.Doctor = req.body.doctor;
+  newUser.Email = req.body.email;
+  newUser.Gender = req.body.gender;
+  newUser.Mobile = req.body.mobile;
+  newUser.Slot = req.body.slot;
+  newUser.Specialization = req.body.specialization;
+  
+  
+  
+  
+
+  newUser.save(function (err) {
+      if(err) throw (err);
+
+      var options = {
+        format: "A4",
+        orientation: "portrait",
+        border: "10mm"
+    };
+    var users = [
+      {
+        Name  : req.body.name,
+        Hospital : req.body.hospital,
+        Age : req.body.age,
+        Date : req.body.date,
+        Doctor : req.body.doctor,
+        Email : req.body.email,
+        Gender : req.body.gender,
+        Mobile : req.body.mobile,
+        Slot : req.body.slot,
+        Specialization : req.body.specialization
+      }
+  ]
+  var document = {
+      html: html,
+      data: {
+          users: users
+      },
+      path: "./output.pdf"
+  };
+  pdf.create(document, options)
+    .then(r => {
+      console.log("wssupp")
+      return res.redirect('/hello')
+    })
+    .catch(error => {
+        console.error(error)
+    });
+  })
+})
 
 router.get("/shopping-cart",function(req,res,next){
   if(!req.session.cart){
