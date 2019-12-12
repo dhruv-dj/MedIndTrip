@@ -224,8 +224,8 @@
             <label for="gender">Gender</label>
             <select name="gender" class="form-control" id="gender">
               <option>Click to select gender...</option>
-              <option value="Max">Male</option>
-              <option value="Apollo">Female</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
             </select>
           </div>     
           <button id="book" class="btn btn-primary">Confirm Booking</button>
@@ -342,8 +342,22 @@ $(document).ready(function(){
     });
 
     
-    $(".doc").click(function(e){
-       e.preventDefault();
+//    $(".doc").click(function(e){
+//       e.preventDefault();
+//       var docID = this.id;
+//        var slotID = '#'+docID+'slot';
+//        var slotVal = $(slotID).val();
+////        console.log(slotVal);
+//        jsonData['doctor'] = docID;
+//        jsonData['slot'] = slotVal;
+//        $("#step4").hide("fast");
+//  $("#step5").show("fast"); 
+//  $("a.step4").removeClass("icon-active");
+//  $("a.step5").addClass("icon-active");
+//    });
+    
+    $(document).on("click", ".doc", function(e){
+      e.preventDefault();
        var docID = this.id;
         var slotID = '#'+docID+'slot';
         var slotVal = $(slotID).val();
@@ -360,7 +374,7 @@ $(document).ready(function(){
         e.preventDefault();
         jsonData['name'] = $("#fname").val() + $("#lname").val();
         jsonData['age'] = $("#age").val();
-        jsonData['gender'] = $("#gender").val()
+        jsonData['gender'] = $("#gender").val();
         console.log(jsonData);
         
         $.ajax({
