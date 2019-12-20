@@ -77,13 +77,14 @@
         </div> 
         <!-- Step 2 | Choose Specialization -->
     <div id = "step2" class="row">
-
+        <div class="col-3"></div>
         <div class="card col">
         <div class="card-header text-center">
             <h5>Choose Specialization</h5>
         </div>    
         <div class="card-body">
             <form >
+<!--
             <div class="row">
                 <div class="col-4">
                     <input name="Cardiology" type="button" class="btn btn-block btn-outline-dark speciality-btn" value="Cardiology" />
@@ -104,26 +105,39 @@
                     <input name="Optics" type="button" class="btn btn-block btn-outline-dark speciality-btn" value="Optics"/>
                 </div>  
             </div> 
-            <div class="spacing"></div>
-            <div class="row">
-                <div class="col-4"></div>
-                <div class="col-4">
-                    
+-->
+<!--            <div class="spacing"></div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-6">-->
+                    <div class="form-group">
+                        <label for="specialization">Specialization</label>
+                        <select name="Specialization" class="form-control" id="specialization">
+                          <option>Select Specialization...</option>
+                          <option value="Cardiology">Cardiology</option>
+                          <option value="Obstetrics">Obstetrics</option>
+                          <option value="Ophthalmology">Ophthalmology</option>
+                        </select>
+                    </div>
+<!--                </div>-->
+<!--                <div class="col-6">-->
                         <div class="form-group">
-                            <select name="OtherSpecialization" class="form-control" id="specialization">
-                              <option>Select Other Category...</option>
-                              <option value="Cardiology">Cardiology</option>
-                              <option value="Obstetrics">Obstetrics</option>
-                              <option value="Ophthalmology">Ophthalmology</option>
+                            <label for="sub-specialization">Sub Category</label>
+                            <select name="SubSpecialization" class="form-control" id="sub-specialization">
+                              <option>Select Sub Category...</option>
+                              <option value="a">A</option>
+                              <option value="b">B</option>
+                              <option value="c">C</option>
                             </select>
                         </div>
-                    
-                </div>
-                <div class="col-4"><button id="step2next" class="center btn btn-outline-success">Proceed</button></div>
+<!--                </div>-->
+<!--                </div>-->
+            <div class="row justify-content-center">
+                <div class=""><button id="step2next" class="center btn btn-outline-success">Proceed</button></div>
             </div>
         </form>
         </div>
         </div>
+        <div class="col-3"></div>
         </div>
         <!-- Step 3 | Choose Hospital -->
     <div id = "step3" class="row">
