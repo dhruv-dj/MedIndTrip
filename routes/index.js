@@ -40,6 +40,12 @@ router.get('/getspeciality',function(req,res){
   })
 })
 
+router.get('/getbooking',function(req,res){
+  booking.find().limit(50).exec(function(er,data){
+    res.json(data);
+  })
+})
+
 
 router.use('/',express.static(path.join(__dirname , '../frontend')));
 /* GET home page. */
