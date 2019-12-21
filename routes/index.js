@@ -3,6 +3,7 @@ var path = require('path');
 var router = express.Router();
 var hospital = require('../models/hospital');
 var doctor = require('../models/doctor');
+var speciality = require('../models/speciality');
 var booking = require('../models/booking');
 var csrf = require('csurf');
 var pdf = require("pdf-creator-node");
@@ -10,17 +11,19 @@ var fs = require('fs');
 var Cart = require('../models/hospital');
 var html = fs.readFileSync('template.html', 'utf8');
 
-router.post('/seed',function(req,res){
+router.get('/seed',function(req,res){
   //console.log(req);
-  var newUser=new doctor();
+  var newUser=new speciality();
 
-  newUser.Name  = req.body.Name;
-  newUser.Hospital = req.body.Hospital;
+  newUser.name  = "Bariatric Surgery";
+  newUser.subspeciality = ["Gastric Bypass Surgery",
+    "Gastric Sleeve Surgery",
+    "Gastric Band Surgery",
+    "Gastric Balloon Treatment",
+    "Weight Loss Surgery"]
   
-  newUser.PhotoPath= '/frontend/images/architecture-daylight-door-239853.jpg';
-  newUser.Specialization = req.body.Specialization;
-  newUser.Experience = req.body.Experience;
-  newUser.Degree = req.body.Degree;
+  
+ 
   
 
   newUser.save(function (err) {
@@ -29,6 +32,13 @@ router.post('/seed',function(req,res){
       return res.redirect('/');
   })
   })
+
+router.get('/getspeciality',function(req,res){
+  speciality.find(function(err,result){
+    res.json(result)
+    
+  })
+})
 
 
 router.use('/',express.static(path.join(__dirname , '../frontend')));

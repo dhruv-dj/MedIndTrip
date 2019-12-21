@@ -8,6 +8,8 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.18.2",
+    "cheerio": "^1.0.0-rc.3",
+    "cli-table": "^0.3.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "~1.4.3",
@@ -25,6 +27,7 @@
     "passport-local": "^1.0.0",
     "pdf-creator-node": "^1.3.0",
     "pdfreader": "^1.0.6",
+    "request-promise": "^4.2.5",
     "serve-favicon": "~2.4.5"
   }
 }
