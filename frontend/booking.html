@@ -308,7 +308,9 @@ $(document).ready(function(){
         e.preventDefault();
         var specialization = $('#specialization').val();
         jsonData['specialization'] = specialization;
+        jsonData['sub-specialization'] = $('#sub-specialization').val();
         var str="<option>Click to select hospital...</option>";
+        $("#hospital").empty();
         for(var i=0;i<docData.length;i++){
             if(docData[i].Specialization == specialization){
                 str += "<option value=" + docData[i].Hospital.id + ">" +docData[i].Hospital.name +"</option>";
