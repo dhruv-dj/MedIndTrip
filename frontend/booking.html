@@ -113,9 +113,6 @@
                         <label for="specialization">Specialization</label>
                         <select name="Specialization" class="form-control" id="specialization">
                           <option>Select Specialization...</option>
-                          <option value="Cardiology">Cardiology</option>
-                          <option value="Obstetrics">Obstetrics</option>
-                          <option value="Ophthalmology">Ophthalmology</option>
                         </select>
                     </div>
 <!--                </div>-->
@@ -260,7 +257,7 @@
           type:'GET',
           success: function(data){
               docData = data;
-              console.log(docData);
+//              console.log(docData);
           }
       })
     var hospData = 0;
@@ -269,7 +266,21 @@
           type:'GET',
           success: function(data){
               hospData = data;
-              console.log(hospData);
+//              console.log(hospData);
+          }
+      })
+    var specializationData = 0;
+    $.ajax({
+          url:'/getspeciality',
+          type:'GET',
+          success: function(data){
+              specializationData = data;
+              console.log(specializationData);
+              var str="";
+              for(var i in specializationData){
+                  str+=`<option value="${specializationData[i].name}">${specializationData[i].name}</option>`;
+              }
+              $("#specialization").append(str);
           }
       })
 
@@ -370,7 +381,7 @@ $(document).ready(function(){
 //  $("a.step5").addClass("icon-active");
 //    });
     
-    $(document).on("click", ".doc", function(e){
+$(document).on("click", ".doc", function(e){
       e.preventDefault();
        var docID = this.id;
         var slotID = '#'+docID+'slot';
@@ -384,7 +395,7 @@ $(document).ready(function(){
   $("a.step5").addClass("icon-active");
     });
     
-    $("#book").click(function(e){
+$("#book").click(function(e){
         e.preventDefault();
         jsonData['name'] = $("#fname").val() + $("#lname").val();
         jsonData['age'] = $("#age").val();
@@ -403,5 +414,22 @@ $(document).ready(function(){
             }
         });
     });
+$("#specialization").change(function(){
+    $("#sub-specialization").empty();
+    
+    var specialization = $(this).val();
+//    console.log(specialization);
+    var str = "";
+    for(var i in specializationData){
+//        console.log(specializationData[i]);
+        if(specializationData[i].name==specialization){
+//            console.log("x" + specialization);
+            for(var j in specializationData[i].subspeciality){
+                str+=`<option value="${specializationData[i].subspeciality[j]}">${specializationData[i].subspeciality[j]}</option>`;
+            }
+        }
+    }
+    $("#sub-specialization").append(str);
+});
 </script>
 
