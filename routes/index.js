@@ -150,41 +150,8 @@ router.post("/confirmBooking", function(req,res){
 
   newUser.save(function (err) {
       if(err) throw (err);
+      res.redirect('/confirm.html')
 
-      var options = {
-        format: "A4",
-        orientation: "portrait",
-        border: "10mm"
-    };
-    var users = [
-      {
-        Name  : req.body.name,
-        Hospital : req.body.hospital,
-        Age : req.body.age,
-        Date : req.body.date,
-        Doctor : req.body.doctor,
-        Email : req.body.email,
-        Gender : req.body.gender,
-        Mobile : req.body.mobile,
-        Slot : req.body.slot,
-        Specialization : req.body.specialization
-      }
-  ]
-  var document = {
-      html: html,
-      data: {
-          users: users
-      },
-      path: "./output.pdf"
-  };
-  pdf.create(document, options)
-    .then(r => {
-      console.log("wssupp")
-      return res.redirect('/hello')
-    })
-    .catch(error => {
-        console.error(error)
-    });
   })
 })
 

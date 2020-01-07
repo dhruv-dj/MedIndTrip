@@ -1,7 +1,3 @@
-"Colonoscopy",
-"Pancreatectomy",
-"Hemorrhoidectomy",
-"Whipple Surgery",
-"Ileostomy",
-"Diverticulitis Treatment",
-"Ulcerative Colitis Treatment"
+"Angiography",
+"Angioplasty",
+"Varicose Vein Removal"
