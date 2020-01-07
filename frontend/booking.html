@@ -399,7 +399,7 @@ $(document).on("click", ".doc", function(e){
     
 $("#book").click(function(e){
         e.preventDefault();
-        jsonData['name'] = $("#fname").val() + $("#lname").val();
+        jsonData['name'] = $("#fname").val() +" "+ $("#lname").val();
         jsonData['age'] = $("#age").val();
         jsonData['gender'] = $("#gender").val();
         console.log(jsonData);
