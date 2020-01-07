@@ -143,6 +143,7 @@ router.post("/confirmBooking", function(req,res){
   newUser.Mobile = req.body.mobile;
   newUser.Slot = req.body.slot;
   newUser.Specialization = req.body.specialization;
+  newUser.Sub_specialization = req.body.specialization;
   
   
   
@@ -150,7 +151,8 @@ router.post("/confirmBooking", function(req,res){
 
   newUser.save(function (err) {
       if(err) throw (err);
-      res.redirect('/confirm.html')
+
+      res.redirect('/');
 
   })
 })

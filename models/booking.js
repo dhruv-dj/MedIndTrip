@@ -12,7 +12,8 @@ var bookingSchema = new Schema({
     Hospital : {type: String , required:true},
     Mobile : {type: String , required:true},
     Slot : {type: String , required:true},
-    Specialization: {type: String , required:true}
+    Specialization: {type: String , required:true},
+    Sub_specialization: {type: String , required:true}
     
     
 
