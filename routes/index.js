@@ -127,6 +127,24 @@ router.get('/getHospitals',function(req,res){
   })
 })
 
+router.post('/addHospital',function(req,res){
+  var newUser=new hospital();
+
+  newUser.Name  =  req.body.hname;
+  newUser.Address = req.body.address;
+  newUser.Contact = req.body.contact;
+  
+  
+ 
+  
+
+  newUser.save(function (err) {
+      if(err) throw (err);
+
+      return res.redirect('/admin.html');
+  })
+})
+
 
 router.post("/confirmBooking", function(req,res){
   console.log(req);
