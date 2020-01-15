@@ -147,7 +147,7 @@
                       </div>
 
                       <div class="form-group">
-                        <label for="hopsital">Hospital</label>
+                        <label for="hospital">Hospital</label>
                         <select name="hospital" class="form-control" id="hospital">
                           <option>Click to select Hospital...</option>
                         </select>
@@ -240,11 +240,45 @@
         $(".list").append(`${str}`);
           }
       })
+    
+    var specializationData = 0;
+    $.ajax({
+          url:'/getspeciality',
+          type:'GET',
+          success: function(data){
+              specializationData = data;
+//              console.log(specializationData);
+              var str="";
+              for(var i in specializationData){
+                  str+=`<option value="${specializationData[i].name}">${specializationData[i].name}</option>`;
+              }
+              $("#specialization").append(str);
+          }
+      })
+    
+    var hospData = 0;
+    $.ajax({
+          url:'/getHospitals',
+          type:'GET',
+          success: function(data){
+              hospData = data;
+              console.log(hospData);
+              var str = "";
+            for(var i=0;i<hospData.length;i++){
+        //            if(docData[i].Specialization == specialization){
+                console.log("Working");
+                        str += "<option value=" + hospData[i]._id + ">" +hospData[i].Name +"</option>";
+        //            }
+                }
+                $("#hospital").append(`${str}`);
+          }
+      })
+    
 
     $(document).on("click",".know-more",function(e){
         e.preventDefault();
         $( ".info" ).empty();
-        bookingId = this.id;
+        bookingId = this.i;d;
         var str = "";
         for(var i=0;i<bookings.length;i++){
             if(bookings[i]._id == bookingId){
