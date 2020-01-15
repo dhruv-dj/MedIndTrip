@@ -145,6 +145,22 @@ router.post('/addHospital',function(req,res){
   })
 })
 
+router.post('/addDoctor',function(req,res){
+  console.log(req);
+  var newUser=new doctor();
+
+  newUser.Name  =  req.body.dname;
+  newUser.Hospital = req.body.hospital;
+  newUser.Degree = req.body.degree;
+  newUser.Slots = req.body.slot;
+  newUser.Specialization = req.body.specialization;
+  newUser.save(function (err) {
+      if(err) throw (err);
+
+      return res.redirect('/admin.html');
+  })
+})
+
 
 router.post("/confirmBooking", function(req,res){
   console.log(req);
