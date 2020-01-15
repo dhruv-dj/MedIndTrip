@@ -170,13 +170,20 @@ router.post('/addDoctor',function(req,res){
     finalSlot.push(adding);
     
   }
-  
- 
+  var arr = [];
+  for(var i=0;i<finalSlot.length;i++){
+    for(var j=0;j<finalSlot[i].length;j++){
+      arr.push(finalSlot[i][j]);
+    }
+  }
+  console.log(req);
   newUser.Name  =  req.body.dname;
   newUser.Hospital = req.body.hospital;
   newUser.Degree = req.body.degree;
 
-  newUser.Slots = finalSlot;
+  newUser.Slots = arr;
+ 
+
   newUser.Specialization = req.body.specialization;
   newUser.save(function (err) {
       if(err) throw (err);
