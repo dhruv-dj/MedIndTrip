@@ -95,30 +95,34 @@ router.post('/add_details',function(req,res,next){
 
 
 router.get('/getDoctors',function(req,res){
-  hospital.find(function(err,hospitals){
-    console.log(hospitals);
-    var arr = [];
-    for(var i=0;i<hospitals.length;i++){
-      var obj = {};
-      obj.id = hospitals[i].id;
-      obj.name = hospitals[i].Name;
-      arr.push(obj);
-    }
-    console.log(arr);
+  // hospital.find(function(err,hospitals){
+  //   console.log(hospitals);
+  //   var arr = [];
+  //   for(var i=0;i<hospitals.length;i++){
+  //     var obj = {};
+  //     obj.id = hospitals[i].id;
+  //     obj.name = hospitals[i].Name;
+  //     arr.push(obj);
+  //   }
+  //   console.log(arr);
     doctor.find(function(err,doctors){
-      console.log(doctors);
-      var finalarr =[];
-      for(var i=0;i<doctors.length;i++){
-        for(var j=0;j<arr.length;j++){
-          if(doctors[i]._doc.Hospital == arr[j].name){
-            doctors[i]._doc.Hospital = arr[j];
-            break;
-          }
-        }
-      }
       res.json(doctors)
+      
+
+      
+      
+      // for(var i=0;i<doctors.length;i++){
+      //   for(var j=0;j<arr.length;j++){
+      //     if(doctors[i]._doc.Hospital == arr[j].name){
+      //       doctors[i]._doc.Hospital = arr[j];
+      //       break;
+      //     }
+      //   }
+      // }
+      
+      
     })
-  })
+  // })
   
 })
 router.get('/getHospitals',function(req,res){
@@ -177,20 +181,37 @@ router.post('/addDoctor',function(req,res){
     }
   }
   console.log(req);
-  newUser.Name  =  req.body.dname;
-  newUser.Hospital = req.body.hospital;
-  newUser.Degree = req.body.degree;
+  
+  
+  hospital.findById(req.body.hospital, function (err, hosp) {
+    console.log(hosp);
+    var obj = {};
+    obj.id = hosp.id;
+    obj.Name = hosp.Name;
+    newUser.Name  =  req.body.dname;
+    newUser.Hospital = obj;
+    newUser.Degree = req.body.degree;
+    newUser.Slots = arr;
+    newUser.Specialization = req.body.specialization;
+    console.log(newUser)
 
-  newUser.Slots = arr;
+      newUser.save(function (err) {
+          if(err) throw (err);
+
+          return res.redirect('/admin.html');
+      })
+   
+  } );
+  
+})
+ 
  
 
-  newUser.Specialization = req.body.specialization;
-  newUser.save(function (err) {
-      if(err) throw (err);
+  
+ 
 
-      return res.redirect('/admin.html');
-  })
-})
+  
+
 
 
 router.post("/confirmBooking", function(req,res){
