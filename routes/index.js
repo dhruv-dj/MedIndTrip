@@ -217,6 +217,37 @@ router.post('/addDoctor',function(req,res){
 router.post("/confirmBooking", function(req,res){
   console.log(req);
   //console.log(req);
+  hospital.findById(req.body.hospital, function (err, hosp) {
+    console.log(hosp);
+    doctor.findById(req.body.doctor, function (err, doc) {
+      console.log(doc);
+      var newUser=new booking();
+
+      newUser.Name  = req.body.name;
+      newUser.Hospital = hosp.Name;
+      newUser.Age = req.body.age;
+      newUser.Date = req.body.date;
+      newUser.Doctor = doc.Name;
+      newUser.Email = req.body.email;
+      newUser.Gender = req.body.gender;
+      newUser.Mobile = req.body.mobile;
+      newUser.Slot = req.body.slot;
+      newUser.Specialization = req.body.specialization;
+      newUser.Sub_specialization = req.body.specialization;
+      
+      
+      
+      
+
+      newUser.save(function (err) {
+          if(err) throw (err);
+          console.log("hello");
+          res.redirect('/');
+
+      })
+      
+    })
+  })
   var newUser=new booking();
 
   newUser.Name  = req.body.name;
