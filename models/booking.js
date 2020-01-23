@@ -11,7 +11,7 @@ var bookingSchema = new Schema({
     Gender : {type: String , required:true},
     Hospital : {type: String , required:true},
     Mobile : {type: String , required:true},
-    Slot : {type: String , required:true},
+    Slot : {type: String , required:false},
     Specialization: {type: String , required:true},
     Sub_specialization: {type: String , required:true}
     
