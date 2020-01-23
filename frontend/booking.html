@@ -415,8 +415,8 @@ $("#book").click(function(e){
             data: JSON.stringify(jsonData),
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
-            async: false,
-            done: function(msg) {
+            async:false,
+            success: function(msg) {
                 console.log("Booking Successful");
             }
         });

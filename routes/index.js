@@ -234,44 +234,42 @@ router.post("/confirmBooking", function(req,res){
       newUser.Slot = req.body.slot;
       newUser.Specialization = req.body.specialization;
       newUser.Sub_specialization = req.body.specialization;
-      
-      
-      
-      
 
       newUser.save(function (err) {
           if(err) throw (err);
           console.log("hello");
-          res.redirect('/');
+          var newUser2=new booking();
+
+  newUser2.Name  = req.body.name;
+  newUser2.Hospital = req.body.hospital;
+  newUser2.Age = req.body.age;
+  newUser2.Date = req.body.date;
+  newUser2.Doctor = req.body.doctor;
+  newUser2.Email = req.body.email;
+  newUser2.Gender = req.body.gender;
+  newUser2.Mobile = req.body.mobile;
+  newUser2.Slot = req.body.slot;
+  newUser2.Specialization = req.body.specialization;
+  newUser2.Sub_specialization = req.body.specialization;
+  
+  
+  
+  
+    
+  newUser2.save(function (err) {
+      if(err) throw (err);
+      console.log("blablblblb")
+      res.send("Confirmmm")
+//      res.redirect('/');
+
+  })
 
       })
       
     })
   })
-  var newUser=new booking();
 
-  newUser.Name  = req.body.name;
-  newUser.Hospital = req.body.hospital;
-  newUser.Age = req.body.age;
-  newUser.Date = req.body.date;
-  newUser.Doctor = req.body.doctor;
-  newUser.Email = req.body.email;
-  newUser.Gender = req.body.gender;
-  newUser.Mobile = req.body.mobile;
-  newUser.Slot = req.body.slot;
-  newUser.Specialization = req.body.specialization;
-  newUser.Sub_specialization = req.body.specialization;
   
-  
-  
-  
-
-  newUser.save(function (err) {
-      if(err) throw (err);
-
-      res.redirect('/');
-
-  })
 })
 
 router.get("/shopping-cart",function(req,res,next){
