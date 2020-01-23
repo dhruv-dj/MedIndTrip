@@ -335,7 +335,7 @@ $(document).ready(function(){
             if(docData[i].Specialization == jsonData.specialization&&docData[i].Hospital.id==hospitalID){
                 slots="";
                 for(var j=0;j<docData[i].Slots.length;j++){
-                    slots+=`<option value=${docData[i].Slots[j]}>${docData[i].Slots[j]}</option>`;
+                    slots+=`<option value="${docData[i].Slots[j]}">${docData[i].Slots[j]}</option>`;
                 }
                 str += `<div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
@@ -348,7 +348,7 @@ $(document).ready(function(){
                     <p class="card-text">${docData[i].Degree} | ${docData[i].Experience}</p>
                     <p class="card-text"><small class="text-muted">${docData[i].Specialization}</small></p>
                     <form class="form-inline">
-                    <select name="slot" class="form-control" id="${docData[i].id}+slot">
+                    <select name="slot" class="form-control" id="${docData[i]._id}slot">
                       <option>Click to select slot...</option>
                       ${slots}
                     </select> &nbsp;   
@@ -392,7 +392,8 @@ $(document).on("click", ".doc", function(e){
        var docID = this.id;
         var slotID = '#'+docID+'slot';
         var slotVal = $(slotID).val();
-//        console.log(slotVal);
+        console.log(slotID);
+        console.log(slotVal);
         jsonData['doctor'] = docID;
         jsonData['slot'] = slotVal;
         $("#step4").hide("fast");
@@ -415,8 +416,8 @@ $("#book").click(function(e){
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             async: false,
-            success: function(msg) {
-                alert(msg);
+            done: function(msg) {
+                console.log("Booking Successful");
             }
         });
     });
