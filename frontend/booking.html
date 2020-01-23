@@ -310,7 +310,7 @@ $(document).ready(function(){
         e.preventDefault();
         var specialization = $('#specialization').val();
         jsonData['specialization'] = specialization;
-        jsonData['sub-specialization'] = $('#sub-specialization').val();
+        jsonData['sub_specialization'] = $('#sub-specialization').val();
         var str="<option>Click to select hospital...</option>";
         $("#hospital").empty();
         for(var i=0;i<docData.length;i++){

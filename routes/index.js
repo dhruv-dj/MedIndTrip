@@ -10,6 +10,20 @@ var pdf = require("pdf-creator-node");
 var fs = require('fs');
 var Cart = require('../models/hospital');
 var html = fs.readFileSync('template.html', 'utf8');
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth:{
+		user: 'mohankukreja1@gmail.com',
+		pass: 'PAKU$009f'
+	},
+	tls: {
+		rejectUnauthorized: false
+	}
+
+
+});
 
 router.get('/seed',function(req,res){
   //console.log(req);
@@ -233,7 +247,7 @@ router.post("/confirmBooking", function(req,res){
       newUser.Mobile = req.body.mobile;
       newUser.Slot = req.body.slot;
       newUser.Specialization = req.body.specialization;
-      newUser.Sub_specialization = req.body.specialization;
+      newUser.Sub_specialization = req.body.sub_specialization;
       
       
       
@@ -242,36 +256,44 @@ router.post("/confirmBooking", function(req,res){
       newUser.save(function (err) {
           if(err) throw (err);
           console.log("hello");
-          res.redirect('/');
+          var mailOptions = {
+            from: 'mohankukreja1@gmail.com',
+            to: `${req.body.email}`,
+            subject: "Booking confirmations",
+            text: `Name  = ${req.body.name};
+            Hospital = ${hosp.Name};
+            Age = ${req.body.age};
+            Date = ${req.body.date};
+            Doctor = ${doc.Name};
+            Email = ${req.body.email};
+            Gender = ${req.body.gender};
+            Mobile = ${req.body.mobile};
+            Slot = ${req.body.slot};
+            Specialization = ${req.body.specialization};
+            Sub_specialization = ${req.body.sub_specialization};
+            `
+          };
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+              res.redirect('/');
+            }
+          })
+          
 
       })
       
     })
   })
-  var newUser=new booking();
 
-  newUser.Name  = req.body.name;
-  newUser.Hospital = req.body.hospital;
-  newUser.Age = req.body.age;
-  newUser.Date = req.body.date;
-  newUser.Doctor = req.body.doctor;
-  newUser.Email = req.body.email;
-  newUser.Gender = req.body.gender;
-  newUser.Mobile = req.body.mobile;
-  newUser.Slot = req.body.slot;
-  newUser.Specialization = req.body.specialization;
-  newUser.Sub_specialization = req.body.specialization;
   
   
   
   
 
-  newUser.save(function (err) {
-      if(err) throw (err);
-
-      res.redirect('/');
-
-  })
+ 
 })
 
 router.get("/shopping-cart",function(req,res,next){
