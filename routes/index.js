@@ -225,7 +225,9 @@ router.post('/addDoctor',function(req,res){
 
   
  
-
+router.post("/confirmBooking", function(req,res){
+  res.redirect('/');
+})
   
 
 
