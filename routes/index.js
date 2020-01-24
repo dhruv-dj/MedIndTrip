@@ -11,6 +11,22 @@ var fs = require('fs');
 var Cart = require('../models/hospital');
 var html = fs.readFileSync('template.html', 'utf8');
 
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+	service: 'gmail',
+	auth:{
+		user: 'mohankukreja1@gmail.com',
+		pass: 'passowrd kon commit karta hai bc'
+	},
+	tls: {
+		rejectUnauthorized: false
+	}
+
+
+});
+
+
 router.get('/seed',function(req,res){
   //console.log(req);
   var newUser=new speciality();
@@ -215,6 +231,7 @@ router.post('/addDoctor',function(req,res){
 
 
 router.post("/confirmBooking", function(req,res){
+
   console.log(req);
   //console.log(req);
   hospital.findById(req.body.hospital, function (err, hosp) {
@@ -251,10 +268,84 @@ router.post("/confirmBooking", function(req,res){
   newUser2.Slot = req.body.slot;
   newUser2.Specialization = req.body.specialization;
   newUser2.Sub_specialization = req.body.specialization;
+
+  console.log("hello");
+  res.redirect('/');
+  // console.log(req);
+  // //console.log(req);
+  // res.setHeader("Content-Type", "text/html")
+
+  // hospital.findById(req.body.hospital, function (err, hosp) {
+  //   console.log(hosp);
+  //   doctor.findById(req.body.doctor, function (err, doc) {
+  //     console.log(doc);
+  //     var newUser=new booking();
+
+  //     newUser.Name  = req.body.name;
+  //     newUser.Hospital = hosp.Name;
+  //     newUser.Age = req.body.age;
+  //     newUser.Date = req.body.date;
+  //     newUser.Doctor = doc.Name;
+  //     newUser.Email = req.body.email;
+  //     newUser.Gender = req.body.gender;
+  //     newUser.Mobile = req.body.mobile;
+  //     newUser.Slot = req.body.slot;
+  //     newUser.Specialization = req.body.specialization;
+  //     newUser.Sub_specialization = req.body.sub_specialization;
+      
+      
+  //     var mailOptions = {
+  //       from: 'mohankukreja1@gmail.com',
+  //       to: `${req.body.email}`,
+  //       subject: "Booking confirmations",
+  //       text: `Name  = ${req.body.name};
+  //       Hospital = ${hosp.Name};
+  //       Age = ${req.body.age};
+  //       Date = ${req.body.date};
+  //       Doctor = ${doc.Name};
+  //       Email = ${req.body.email};
+  //       Gender = ${req.body.gender};
+  //       Mobile = ${req.body.mobile};
+  //       Slot = ${req.body.slot};
+  //       Specialization = ${req.body.specialization};
+  //       Sub_specialization = ${req.body.sub_specialization};
+  //       `
+  //     };
+  //     transporter.sendMail(mailOptions, function(error, info){
+  //       if (error) {
+  //         console.log(error);
+  //         newUser.save(function (err) {
+  //           if(err) throw (err);
+  //           console.log("hello");
+  //           res.send('hello')
+            
+  
+  //       })
+          
+  //       } else {
+  //         console.log('Email sent: ' + info.response);
+  //         newUser.save(function (err) {
+  //           if(err) throw (err);
+  //           console.log("hello");
+  //           res.send('hello')
+            
+  
+  //       })
+  //       }
+  //     })
+      
+
+      
+      
+  //   })
+  //})
+
+
   
   
   
   
+
     
   newUser2.save(function (err) {
       if(err) throw (err);
@@ -264,13 +355,103 @@ router.post("/confirmBooking", function(req,res){
 
   })
 
-      })
+
+ 
+})
+// router.post("/confirmBooking", function(req,res){
+//   console.log(req);
+//   //console.log(req);
+//   hospital.findById(req.body.hospital, function (err, hosp) {
+//     console.log(hosp);
+//     doctor.findById(req.body.doctor, function (err, doc) {
+//       console.log(doc);
+//       var newUser=new booking();
+
+//       newUser.Name  = req.body.name;
+//       newUser.Hospital = hosp.Name;
+//       newUser.Age = req.body.age;
+//       newUser.Date = req.body.date;
+//       newUser.Doctor = doc.Name;
+//       newUser.Email = req.body.email;
+//       newUser.Gender = req.body.gender;
+//       newUser.Mobile = req.body.mobile;
+//       newUser.Slot = req.body.slot;
+//       newUser.Specialization = req.body.specialization;
+
+//       newUser.Sub_specialization = req.body.sub_specialization;
       
-    })
-  })
+      
+      
+
+
+//       newUser.save(function (err) {
+//           if(err) throw (err);
+//           console.log("hello");
+//           var newUser2=new booking();
+
+//   newUser2.Name  = req.body.name;
+//   newUser2.Hospital = req.body.hospital;
+//   newUser2.Age = req.body.age;
+//   newUser2.Date = req.body.date;
+//   newUser2.Doctor = req.body.doctor;
+//   newUser2.Email = req.body.email;
+//   newUser2.Gender = req.body.gender;
+//   newUser2.Mobile = req.body.mobile;
+//   newUser2.Slot = req.body.slot;
+//   newUser2.Specialization = req.body.specialization;
+//   newUser2.Sub_specialization = req.body.specialization;
+//           var mailOptions = {
+//             from: 'mohankukreja1@gmail.com',
+//             to: `${req.body.email}`,
+//             subject: "Booking confirmations",
+//             text: `Name  = ${req.body.name};
+//             Hospital = ${hosp.Name};
+//             Age = ${req.body.age};
+//             Date = ${req.body.date};
+//             Doctor = ${doc.Name};
+//             Email = ${req.body.email};
+//             Gender = ${req.body.gender};
+//             Mobile = ${req.body.mobile};
+//             Slot = ${req.body.slot};
+//             Specialization = ${req.body.specialization};
+//             Sub_specialization = ${req.body.sub_specialization};
+//             `
+//           };
+//           transporter.sendMail(mailOptions, function(error, info){
+//             if (error) {
+//               console.log(error);
+//               res.redirect('/cat')
+//             } else {
+//               console.log('Email sent: ' + info.response);
+//               res.redirect('/');
+//             }
+//           })
+          
+
+
+//       })
+      
+//     })
+//   })
 
   
+
 })
+  
+  
+  
+    
+//   newUser2.save(function (err) {
+//       if(err) throw (err);
+//       console.log("blablblblb")
+//       //res.send("Confirmmm")
+//       res.redirect('/');
+
+//   })
+
+//       })
+ 
+
 
 router.get("/shopping-cart",function(req,res,next){
   if(!req.session.cart){
