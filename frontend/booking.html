@@ -304,6 +304,8 @@ $(document).ready(function(){
             url: '/confirmBooking',
             type: 'POST',
             data: JSON.stringify(jsonData),
+            dataType:'json',
+            contentType:'application/json',
             success: function(data){
                 alert("Thank You For Booking An Appointment");
                 location.reload();
