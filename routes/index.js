@@ -224,12 +224,74 @@ router.post('/addDoctor',function(req,res){
  
 
   
- 
-router.post('/confirm', function(req,res){
-  res.redirect('/admin.html');
-})
-  
 
+router.post("/confirmBooking", function(req,res){
+   console.log(req);
+ //console.log(req);
+ res.setHeader("Content-Type", "text/html")
+
+ hospital.findById(req.body.hospital, function (err, hosp) {
+   console.log(hosp);
+   doctor.findById(req.body.doctor, function (err, doc) {
+     console.log(doc);
+     var newUser=new booking();
+
+     newUser.Name  = req.body.name;
+     newUser.Hospital = hosp.Name;
+     newUser.Age = req.body.age;
+     newUser.Date = req.body.date;
+     newUser.Doctor = doc.Name;
+     newUser.Email = req.body.email;
+     newUser.Gender = req.body.gender;
+     newUser.Mobile = req.body.mobile;
+     newUser.Slot = req.body.slot;
+     newUser.Specialization = req.body.specialization;
+     newUser.Sub_specialization = req.body.sub_specialization;
+     
+     
+     var mailOptions = {
+       from: 'mohankukreja1@gmail.com',
+       to: `${req.body.email}`,
+       subject: "Booking confirmations",
+       text: `Name  = ${req.body.name};
+       Hospital = ${hosp.Name};
+       Age = ${req.body.age};
+       Date = ${req.body.date};
+       Doctor = ${doc.Name};
+       Email = ${req.body.email};
+       Gender = ${req.body.gender};
+       Mobile = ${req.body.mobile};
+       Slot = ${req.body.slot};
+       Specialization = ${req.body.specialization};
+       Sub_specialization = ${req.body.sub_specialization};
+       `
+     };
+     transporter.sendMail(mailOptions, function(error, info){
+       if (error) {
+         console.log(error);
+         newUser.save(function (err) {
+           if(err) throw (err);
+           console.log("hello");
+           res.redirect('/');
+           
+ 
+       })
+         
+       } else {
+         console.log('Email sent: ' + info.response);
+         newUser.save(function (err) {
+           if(err) throw (err);
+           console.log("hello");
+           res.redirect('/');
+           
+ 
+       })
+       }
+     })
+    })
+  })
+
+})
 
 
 //router.post("/confirmBooking", function(req,res){
