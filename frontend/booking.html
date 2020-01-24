@@ -293,7 +293,24 @@ $(document).ready(function(){
     $("#step4").hide();
     $("#step1").show();
     
-    
+    $("#book").click(function(e){
+        e.preventDefault();
+        jsonData['name'] = $("#fname").val() +" "+ $("#lname").val();
+        jsonData['age'] = $("#age").val();
+        jsonData['gender'] = $("#gender").val();
+//        console.log(jsonData);
+        
+        var jqxhr = $.ajax({
+            url: '/confirmBooking',
+            type: 'POST',
+            data: JSON.stringify(jsonData),
+            success: function(data){
+                alert("Thank You For Booking An Appointment");
+                location.reload();
+            }
+        });
+        
+    });
 });
     var jsonData = new Object();    
     $("#step1next").click(function(e){
@@ -402,25 +419,8 @@ $(document).on("click", ".doc", function(e){
   $("a.step5").addClass("icon-active");
     });
     
-$("#book").click(function(e){
-        e.preventDefault();
-        jsonData['name'] = $("#fname").val() +" "+ $("#lname").val();
-        jsonData['age'] = $("#age").val();
-        jsonData['gender'] = $("#gender").val();
-        console.log(jsonData);
-        
-        $.ajax({
-            url: '/confirmBooking',
-            type: 'POST',
-            data: JSON.stringify(jsonData),
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            async:false,
-            success: function(msg) {
-                console.log("Booking Successful");
-            }
-        });
-    });
+
+    
 $("#specialization").change(function(){
     $("#sub-specialization").empty();
     
