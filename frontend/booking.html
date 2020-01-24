@@ -301,11 +301,9 @@ $(document).ready(function(){
 //        console.log(jsonData);
         
         var jqxhr = $.ajax({
-            url: '/confirmBooking',
+            url: '/confirm',
             type: 'POST',
             data: JSON.stringify(jsonData),
-            dataType:'json',
-            contentType:'application/json',
             success: function(data){
                 alert("Thank You For Booking An Appointment");
                 location.reload();

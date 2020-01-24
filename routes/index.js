@@ -62,6 +62,10 @@ router.get('/getbooking',function(req,res){
   })
 })
 
+router.post('/confirm',function(req,res){
+    console.log("IDGAF");
+    res.redirect('/admin.html');
+})
 
 router.use('/',express.static(path.join(__dirname , '../frontend')));
 /* GET home page. */
