@@ -63,8 +63,8 @@ router.get('/getbooking',function(req,res){
 })
 
 router.post('/confirm',function(req,res){
-    console.log("IDGAF");
-    res.redirect('/admin.html');
+  console.log("IDGAFmohan");
+  res.redirect('/admin.html');
 })
 
 router.use('/',express.static(path.join(__dirname , '../frontend')));
@@ -225,7 +225,7 @@ router.post('/addDoctor',function(req,res){
   
 })
  
- 
+
 
   
 
@@ -251,7 +251,7 @@ router.post("/confirmBooking", function(req,res){
      newUser.Slot = req.body.slot;
      newUser.Specialization = req.body.specialization;
      newUser.Sub_specialization = req.body.sub_specialization;
-     
+     console.log(newUser)
      
      var mailOptions = {
        from: 'mohankukreja1@gmail.com',
