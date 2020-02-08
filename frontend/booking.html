@@ -293,24 +293,25 @@ $(document).ready(function(){
     $("#step4").hide();
     $("#step1").show();
     
-    $("#book").click(function(e){
-        e.preventDefault();
-        jsonData['name'] = $("#fname").val() +" "+ $("#lname").val();
-        jsonData['age'] = $("#age").val();
-        jsonData['gender'] = $("#gender").val();
-//        console.log(jsonData);
-        
-        var jqxhr = $.ajax({
-            url: '/confirm',
-            type: 'POST',
-            data: JSON.stringify(jsonData),
-            success: function(data){
-                alert("Thank You For Booking An Appointment");
-                location.reload();
-            }
-        });
-        
-    });
+//    $("#book").click(function(e){
+//        e.preventDefault();
+//        jsonData['name'] = $("#fname").val() +" "+ $("#lname").val();
+//        jsonData['age'] = $("#age").val();
+//        jsonData['gender'] = $("#gender").val();
+////        console.log(jsonData);
+//        
+//        var jqxhr = $.ajax({
+//            url: '/confirm',
+//            type: 'POST',
+//            data: JSON.stringify(jsonData),
+//            success: function(data){
+//                alert("Thank You For Booking An Appointment");
+//                location.reload();
+//            }
+//        });
+//        
+//    });
+    
 });
     var jsonData = new Object();    
     $("#step1next").click(function(e){
@@ -388,7 +389,24 @@ $(document).ready(function(){
           $("a.step4").addClass("icon-active");
 
     });
-
+    
+$(document).on("click", "#book", function(e){
+      e.preventDefault();
+        jsonData['name'] = $("#fname").val() +" "+ $("#lname").val();
+        jsonData['age'] = $("#age").val();
+        jsonData['gender'] = $("#gender").val();
+//        console.log(jsonData);
+        
+        var jqxhr = $.ajax({
+            url: '/confirmBooking',
+            type: 'POST',
+            data: JSON.stringify(jsonData),
+            success: function(data){
+                alert("Thank You For Booking An Appointment");
+                location.reload();
+            }
+        });
+    });
     
 //    $(".doc").click(function(e){
 //       e.preventDefault();
