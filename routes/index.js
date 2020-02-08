@@ -276,7 +276,7 @@ router.post("/confirmBooking", function(req,res){
          newUser.save(function (err) {
            if(err) throw (err);
            console.log("hello");
-           res.redirect('/');
+           res.json({name: 'hello'});
            
  
        })
@@ -286,7 +286,7 @@ router.post("/confirmBooking", function(req,res){
          newUser.save(function (err) {
            if(err) throw (err);
            console.log("hello");
-           res.redirect('/');
+           res.json({name: 'hello'});
            
  
        })
