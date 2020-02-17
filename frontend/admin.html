@@ -26,13 +26,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-            <a class="nav-link" href="#">Booking List <span class="sr-only">(current)</span></a>
+            <a id = "booking_tab" class="nav-link" href="#">Booking List <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Add Hospital</a>
+            <a id = "hospital_tab" class="nav-link" href="#">Add Hospital</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Add Doctor</a>
+            <a id = "doctor_tab" class="nav-link" href="#">Add Doctor</a>
             </li>
         </ul>
         </div>
@@ -219,6 +219,11 @@
 </body>
 <script>
     var bookings = 0;
+    $(document).ready(function(){
+        $("#add-doctor").hide();
+        $("#add-hospital").hide();
+        $("#booking-list").show();                  
+    })
     $.ajax({
           url:'/getBooking',
           type:'GET',
@@ -289,5 +294,23 @@
             }
         }
         $(".info").append(`${str}`);
+    });
+    $(document).on("click","#booking_tab",function(e){
+       e.preventDefault();
+        $("#add-doctor").hide();
+        $("#add-hospital").hide();
+        $("#booking-list").show();
+    });
+    $(document).on("click","#doctor_tab",function(e){
+       e.preventDefault();
+        $("#add-doctor").show();
+        $("#add-hospital").hide();
+        $("#booking-list").hide();
+    });
+    $(document).on("click","#hospital_tab",function(e){
+       e.preventDefault();
+        $("#add-doctor").hide();
+        $("#add-hospital").show();
+        $("#booking-list").hide();
     });
 </script>
