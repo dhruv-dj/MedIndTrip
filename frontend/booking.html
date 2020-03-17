@@ -165,13 +165,8 @@
         <!-- Step 4 | Choose Doctor -->
     <div id = "step4" class="row">
         <div id = "doctor-list" class="card-deck">
-            <div class="card mb-3" style="max-width: 540px;">
+        <!--    <div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
-<!--
-                <div class="col-md-4">
-                  <img src="images/docimage.jpg" class="card-img" alt="...">
-                </div>
--->
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title">Dr. Drake Ramoray</h5>
@@ -212,7 +207,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
         </div>
     </div>
         <!-- Step 5 | Confirmation -->
@@ -277,7 +272,7 @@
           type:'GET',
           success: function(data){
               specializationData = data;
-              console.log(specializationData);
+//              console.log(specializationData);
               var str="";
               for(var i in specializationData){
                   str+=`<option value="${specializationData[i].name}">${specializationData[i].name}</option>`;
@@ -357,13 +352,10 @@ $(document).ready(function(){
                 }
                 str += `<div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
-                <div class="col-md-4">
-                  <img src="${docData[i].PhotoPath}" class="card-img" alt="...">
-                </div>
-                <div class="col-md-8">
+                <div class="col-md-12">
                   <div class="card-body">
                     <h5 class="card-title">${docData[i].Name}</h5>
-                    <p class="card-text">${docData[i].Degree} | ${docData[i].Experience}</p>
+                    <p class="card-text">${docData[i].Degree} </p>
                     <p class="card-text"><small class="text-muted">${docData[i].Specialization}</small></p>
                     <form class="form-inline">
                     <select name="slot" class="form-control" id="${docData[i]._id}slot">
@@ -382,7 +374,7 @@ $(document).ready(function(){
             }
         }
         
-        console.log(jsonData);
+//        console.log(jsonData);
           $("#step3").hide("fast");
           $("#step4").show("fast");
           $("a.step3").removeClass("icon-active");
@@ -429,8 +421,8 @@ $(document).on("click", ".doc", function(e){
        var docID = this.id;
         var slotID = '#'+docID+'slot';
         var slotVal = $(slotID).val();
-        console.log(slotID);
-        console.log(slotVal);
+//        console.log(slotID);
+//        console.log(slotVal);
         jsonData['doctor'] = docID;
         jsonData['slot'] = slotVal;
         $("#step4").hide("fast");
