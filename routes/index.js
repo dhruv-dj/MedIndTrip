@@ -189,11 +189,18 @@ router.post('/addDoctor',function(req,res){
   }
   finalSlot= [];
   var tempArr = req.body.slot;
+ 
+  if(typeof(tempArr) == "string"){
+    var temparr = [];
+    temparr.push(tempArr);
+    tempArr = temparr;
+  }
   for(var i=0;i<tempArr.length;i++){
     var adding = checkSlots[tempArr[i]];
     finalSlot.push(adding);
     
   }
+  console.log(finalSlot);
   var arr = [];
   for(var i=0;i<finalSlot.length;i++){
     for(var j=0;j<finalSlot[i].length;j++){
